@@ -41,7 +41,7 @@ push:
 	@if [ "$(SETUP_VENV)" = "true" ]; then \
 		. venv/bin/activate && pip freeze > requirements.txt; \
 	fi
-	git add .
+	git add -u
 	git commit -m "Update analysis and data"
 	git push origin $(BRANCH)
 
@@ -51,13 +51,13 @@ venv_init:
 	. venv/bin/activate && pip install --upgrade pip setuptools wheel
 	@touch requirements.txt  # Create requirements.txt if it doesn't exist
 	. venv/bin/activate && pip install -r requirements.txt
-	git add .
+	git add -u
 	git commit -m "Initialize Python environment with virtualenv"
 
 # Update Python packages
 venv_update:
 	. venv/bin/activate && pip install --upgrade -r requirements.txt
-	git add .
+	git add -u
 	git commit -m "Update Python environment dependencies"
 
 # Data analysis workflow
